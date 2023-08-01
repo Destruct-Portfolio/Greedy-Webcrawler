@@ -1,8 +1,7 @@
 import {matcher} from 'glob-url';
-
+import fs from 'fs'
 export function count_matching_urls(urlList: Array<string>) {
   const patterns = [
-    'https://www.travellingking.com/*',
     'https://fave.co/*',
     'https://anrdoezrs.net/click/*',
     'https://kqzyfj.com/click/*',
