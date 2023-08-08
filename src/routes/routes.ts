@@ -1,13 +1,16 @@
 import { Dataset, KeyValueStore, createPuppeteerRouter } from 'crawlee';
 import { load_links } from '../components/link.js';
+import dotenv from 'dotenv';
+dotenv.config()
 
+const DOMAIN = new URL(process.env.STARTING_URL!).origin
 export const router = createPuppeteerRouter();
 
 router.addDefaultHandler(async ({ enqueueLinks, log, request }) => {
     log.info(`Enqueueing new [${request.url}].`);
 
     await enqueueLinks({
-        globs: ['https://www.travellingking.com/*'],
+        globs: [ DOMAIN+'/*' ],
         label: 'explore',
     });
 
