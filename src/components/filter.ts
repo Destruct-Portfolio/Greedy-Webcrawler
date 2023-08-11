@@ -2,36 +2,35 @@ import {matcher} from 'glob-url';
 import fs from 'fs'
 export function count_matching_urls(urlList: Array<string>) {
   const patterns = [
-    'https://fave.co/*',
-    'https://anrdoezrs.net/click/*',
-    'https://kqzyfj.com/click/*',
-    'https://dpbolvw.net/click/*',
-    'https://tkqlhce.com/click/*',
-    'https://jdoqocy.com/click/*',
-    'https://expedia.com/*',
-    'https://hotelscombined.com/*',
-    'https://hotels.com/*',
-    'https://hoteis.com/*',
-    'https://vrbo.com/*',
-    'https://booking.com/*',
-    'https://tripadvisor.com/*',
-    'https://airbnb.com/*',
-    'https://kayak.com/*',
-    'https://abritel.fr/*',
-    'https://www.stayz.com.au/*',
-    'https://tp.st/*',
-    'https://tp.media/*',
-    'https://prf.hn/*',
-    'https://skimresources.com/*',
-    'https://awin1.com/*',
-    'https://stay22.com/*',
-  ];
+    /^https:\/\/(www.)?fave\.co\/.*/,
+    /^https:\/\/(www.)?anrdoezrs\.net\/click\/.*/,
+    /^https:\/\/(www.)?kqzyfj\.com\/click\/.*/,
+    /^https:\/\/(www.)?dpbolvw\.net\/click\/.*/,
+    /^https:\/\/(www.)?tkqlhce\.com\/click\/.*/,
+    /^https:\/\/(www.)?jdoqocy\.com\/click\/.*/,
+    /^https:\/\/(www.)?expedia\.com\/.*/,
+    /^https:\/\/(www.)?hotelscombined\.com\/.*/,
+    /^https:\/\/(www.)?hotels\.com\/.*/,
+    /^https:\/\/(www.)?hoteis\.com\/.*/,
+    /^https:\/\/(www.)?vrbo\.com\/.*/,
+    /^https:\/\/(www.)?booking\.com\/.*/,
+    /^https:\/\/(www.)?tripadvisor\.com\/.*/,
+    /^https:\/\/(www.)?airbnb\.com\/.*/,
+    /^https:\/\/(www.)?kayak\.com\/.*/,
+    /^https:\/\/(www.)?abritel\.fr\/.*/,
+    /^https:\/\/(www.)?www\.stayz\.com\.au\/.*/,
+    /^https:\/\/(www.)?tp\.st\/.*/,
+    /^https:\/\/(www.)?tp\.media\/.*/,
+    /^https:\/\/(www.)?prf\.hn\/.*/,
+    /^https:\/\/(www.)?skimresources\.com\/.*/,
+    /^https:\/\/(www.)?awin1\.com\/.*/,
+    /^https:\/\/(www.)?stay22\.com\/.*/,
+];
 
   const countMap = new Map();
-
   for (const url of urlList) {
     for (const pattern of patterns) {
-      if (matcher.match(pattern, url)) {
+      if (pattern.test(url)) {
         if (countMap.has(pattern)) {
           countMap.set(pattern, countMap.get(pattern) + 1);
         } else {
@@ -42,5 +41,6 @@ export function count_matching_urls(urlList: Array<string>) {
     }
   }
 
+    console.log(countMap)
   return Object.fromEntries(countMap);
 }

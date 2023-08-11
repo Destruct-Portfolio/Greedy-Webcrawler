@@ -1,0 +1,5 @@
+{
+    "/^https:\\/\\/(www.)?booking\\.com\\/.*/": 91,
+    "/^https:\\/\\/(www.)?awin1\\.com\\/.*/": 3,
+    "/^https:\\/\\/(www.)?stay22\\.com\\/.*/": 5
+}
