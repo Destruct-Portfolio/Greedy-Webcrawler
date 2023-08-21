@@ -8,7 +8,7 @@ const store = await KeyValueStore.open('scavenged-links');
 
 log.info('Counting matches from scavenged links ...')
 let links = await store.getValue('links') as Array<string>
-links = count_matching_urls(links)
 
 log.info('Exporting results ...')
-fs.writeFileSync('match_count.json', JSON.stringify(links, null, 2))
+fs.writeFileSync('match_count.json', JSON.stringify(count_matching_urls(links), null, 2))
+fs.writeFileSync('match_count.csv', 'website,count\n'+count_matching_urls(links).map(entry=>entry.join(',')).join('\n'))

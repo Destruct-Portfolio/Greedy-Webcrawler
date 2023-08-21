@@ -27,20 +27,27 @@ export function count_matching_urls(urlList: Array<string>) {
     /^https:\/\/(www.)?stay22\.com\/.*/,
 ];
 
-  const countMap = new Map();
+  const count_map = new Map();
   for (const url of urlList) {
     for (const pattern of patterns) {
       if (pattern.test(url)) {
-        if (countMap.has(pattern)) {
-          countMap.set(pattern, countMap.get(pattern) + 1);
+        if (count_map.has(pattern)) {
+          count_map.set(pattern, count_map.get(pattern) + 1);
         } else {
-          countMap.set(pattern, 1);
+          count_map.set(pattern, 1);
         }
         break;
       }
     }
   }
 
-    console.log(countMap)
-  return Object.fromEntries(countMap);
+  const count_list = Object.entries(Object.fromEntries(count_map))
+    .map((entry: [any, any])=>{
+      const [pattern, value] = entry
+
+      return [pattern.toString().split("?")[1].split("\\")[0], value]
+    })
+
+  return count_list
+
 }

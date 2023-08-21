@@ -3,14 +3,18 @@ import { load_links } from '../components/link.js';
 import dotenv from 'dotenv';
 dotenv.config()
 
-const DOMAIN = new URL(process.env.STARTING_URL!).origin
+const DOMAINS = process.env.STARTING_URL!
+    .split(',')
+    .map(url=>new URL(url).origin)
+    .map(url=>url+'/*')
+
 export const router = createPuppeteerRouter();
 
 router.addDefaultHandler(async ({ enqueueLinks, log, request }) => {
     log.info(`Enqueueing new [${request.url}].`);
 
     await enqueueLinks({
-        globs: [ DOMAIN+'/*' ],
+        globs: [ ...DOMAINS ],
         label: 'explore',
     });
 
