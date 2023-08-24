@@ -22,5 +22,3 @@ export async function sendDiscordWebhook(message: string, webhookUrl: string): P
     }
 }
 
-
-await sendDiscordWebhook("Run terminated. Go check VPS.", "https://discord.com/api/webhooks/1144216699403501578/aDI_abXNU726jbcmwCgZFfbgP2oKY_OHj01Zxaxmd-mGSaEycA0g2CaiRKvnhghbi51p")
