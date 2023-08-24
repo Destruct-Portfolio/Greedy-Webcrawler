@@ -35,6 +35,7 @@
 	},
 	"scripts": {
 		"start:extract": "npm run build && node dist/extract.js",
+		"start:notify": "npm run build && node dist/components/notify.js",
 		"start": "npm run start:prod",
 		"start:prod": "npm run build && node dist/index.js",
 		"start:dev": "ts-node-esm -T src/index.ts",
